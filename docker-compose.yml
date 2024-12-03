@@ -11,16 +11,26 @@ services:
       MONGO_INITDB_DATABASE: product-service
     volumes:
       - ./data/mongodb:/data/db
-  mysql:
+  mysql_order:
     image: mysql:8.3.0
-    container_name: mysql-container
+    container_name: mysql-order-container
     environment:
       MYSQL_ROOT_PASSWORD: mysql
       MYSQL_DATABASE: order_service
     ports:
       - "3306:3306"
     volumes:
-      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./data/mysql:/var/lib/mysql
-    user: root
-    command: [ "sh", "-c", "chmod 755 /docker-entrypoint-initdb.d/init.sql && /entrypoint.sh mysqld" ]
+      - ./docker/mysql/order-init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./data/mysql_order:/var/lib/mysql
+
+  mysql_inventory:
+    image: mysql:8.3.0
+    container_name: mysql-inventory-container
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: inventory_service
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./docker/mysql/inventory-init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./data/mysql_inventory:/var/lib/mysql
