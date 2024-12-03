@@ -32,5 +32,6 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - ./docker/mysql/inventory-init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./docker/mysql/init.d:/docker-entrypoint-initdb.d # !!important, map the folder instead of the any actual file
+#      - ./docker/mysql/inventory-init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./data/mysql_inventory:/var/lib/mysql
