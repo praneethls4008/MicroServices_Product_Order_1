@@ -50,10 +50,17 @@ class OrderServiceApplicationTests {
 					"quantity": 1
 				}
 				""";
+		String requestBody2 = """
+				{
+					"skuCode":"iphone_15",
+					"price": 16000,
+					"quantity": 1
+				}
+				""";
 		RestAssured
 				.given()
 				.contentType("application/json")
-				.body(requestBody)
+				.body(requestBody2)
 				.post("/api/order")
 				.then()
 				.statusCode(201)
