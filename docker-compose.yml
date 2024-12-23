@@ -6,11 +6,13 @@ services:
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
       MONGO_INITDB_DATABASE: product-service
     volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
       - ./data/mongodb:/data/db
+
   mysql_order:
     image: mysql:8.3.0
     container_name: mysql-order-container

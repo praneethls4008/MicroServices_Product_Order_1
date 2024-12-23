@@ -1,8 +1,8 @@
 package com.learn.microservices.order;
 
-import com.learn.microservices.order.dto.OrderRequest;
 import io.restassured.RestAssured;
 import org.hamcrest.Matchers;
+import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,14 +10,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.testcontainers.containers.MySQLContainer;
-import org.testcontainers.containers.MySQLContainerProvider;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.math.BigDecimal;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
+
+@AutoConfigureWireMock(port = 0)
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Testcontainers
@@ -39,6 +42,15 @@ class OrderServiceApplicationTests {
 	void beforeEach(){
 		RestAssured.baseURI = "http://localhost";
 		RestAssured.port = localPort;
+	}
+
+	@Before
+	public void setup() {
+		stubFor(get(urlEqualTo("/api/inventory?skuCode=iphone_15&quantity=1"))
+				.willReturn(aResponse()
+						.withStatus(200)
+						.withHeader("Content-Type", "application/json")
+						.withBody("{\"inStock\": true}")));
 	}
 
 	@Test
