@@ -32,6 +32,8 @@ build/
 ### VS Code ###
 .vscode/
 
+/data/
+
 # Ignore Docker-specific files
 Dockerfile.*
 docker-compose.override.yml
@@ -72,4 +74,4 @@ docker-compose.yml.bak
 
 # Ignore specific OS-generated files
 .DS_Store
-Thumbs.dbolder/Dockerfile
+Thumbs.db
