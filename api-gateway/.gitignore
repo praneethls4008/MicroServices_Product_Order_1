@@ -75,3 +75,5 @@ docker-compose.yml.bak
 # Ignore specific OS-generated files
 .DS_Store
 Thumbs.db
+
+.sdi
