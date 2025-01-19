@@ -110,3 +110,5 @@ To access the Grafana dashboards, you need to port-forward the grafana service t
 ```shell
 kubectl port-forward svc/grafana 3000:3000
 ```
+
+

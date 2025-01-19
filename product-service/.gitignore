@@ -31,3 +31,45 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Ignore Docker-specific files
+Dockerfile.*
+docker-compose.override.yml
+docker-compose.*.yml
+
+# Ignore build directories
+build/
+.docker/
+
+# Ignore data and volumes
+docker-data/
+data/
+volumes/
+
+# Ignore log files
+*.log
+docker-logs/
+
+# Ignore temporary files created during builds
+*.tmp
+*.temp
+*.bak
+
+# Ignore Docker image layer cache
+**/node_modules/
+**/.cache/
+**/__pycache__/
+.cache/
+__pycache__/
+
+# Ignore environment configuration files
+.env
+.env.*
+
+# Ignore Docker Compose generated files
+docker-compose.override.yml
+docker-compose.yml.bak
+
+# Ignore specific OS-generated files
+.DS_Store
+Thumbs.dbolder/Dockerfile
