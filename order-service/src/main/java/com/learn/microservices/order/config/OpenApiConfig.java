@@ -12,8 +12,8 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI GatewayAPI(){
         return new OpenAPI().info(new Info()
-                        .title("API Gateway")
-                        .description("Gateway api!")
+                        .title("Order Service Api")
+                        .description("Order service api!")
                         .version("v0.0.1")
                         .license(new License().name("My apache 2.0")))
                 .externalDocs(new ExternalDocumentation()
