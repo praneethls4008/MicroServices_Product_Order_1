@@ -2,7 +2,6 @@ package com.learn.microservices.gateway.routes;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.server.mvc.filter.CircuitBreakerFilterFunctions;
-import org.springframework.cloud.gateway.server.mvc.handler.GatewayRouterFunctions;
 import org.springframework.cloud.gateway.server.mvc.handler.HandlerFunctions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +30,7 @@ public class Routes {
     @Bean
     public RouterFunction<ServerResponse> orderServiceRoute(){
         return route("order_service")
-                .route(RequestPredicates.path("/api/order"), HandlerFunctions.http("http://localhost:8081"))
+                .route(RequestPredicates.path("/api/order"), HandlerFunctions.http(orderServiceUrl))
                 .filter(CircuitBreakerFilterFunctions.circuitBreaker("OrderServiceCircuitBreaker",
                         URI.create("forward:/fallbackRoute")))
                 .build();
@@ -39,7 +38,7 @@ public class Routes {
     @Bean
     public RouterFunction<ServerResponse> inventoryServiceRoute(){
         return route("inventory_service")
-                .route(RequestPredicates.path("/api/inventory"), HandlerFunctions.http("http://localhost:8082"))
+                .route(RequestPredicates.path("/api/inventory"), HandlerFunctions.http(inventoryServiceUrl))
                 .filter(CircuitBreakerFilterFunctions.circuitBreaker("InventoryServiceCircuitBreaker",
                         URI.create("forward:/fallbackRoute")))
                 .build();
@@ -48,7 +47,7 @@ public class Routes {
     @Bean
     public RouterFunction<ServerResponse> productServiceRoute(){
         return route("product_service")
-                .route(RequestPredicates.path("/api/product"), HandlerFunctions.http("http://localhost:8083"))
+                .route(RequestPredicates.path("/api/product"), HandlerFunctions.http(productServiceUrl))
                 .filter(CircuitBreakerFilterFunctions.circuitBreaker("ProductServiceCircuitBreaker",
                         URI.create("forward:/fallbackRoute")))
                 .build();

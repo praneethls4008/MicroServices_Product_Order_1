@@ -1,0 +1,370 @@
+{
+	"info": {
+		"_postman_id": "b80aecfb-cdcc-4668-80ef-57598e3af7f5",
+		"name": "Microservices1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37121229"
+	},
+	"item": [
+		{
+			"name": "apiGateway",
+			"item": [
+				{
+					"name": "productService",
+					"item": [
+						{
+							"name": "New Request",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "clientSecret",
+											"value": "VxN9IWjMVyzgXQFt0cr3hw28yyypj6Bc",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"value": "spring-client-crendentials-id",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "http://localhost:8181/realms/spring-microservices1-security-realm/protocol/openid-connect/token",
+											"type": "string"
+										},
+										{
+											"key": "tokenName",
+											"value": "keycloak client token",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9000/api/product",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"product"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\" : \"Samsung A55\",\r\n\t\"description\": \"Samsung A55 mobile 6gb ram\",\r\n\t\"price\": 35000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/api/product",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"product"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "inventoryService",
+					"item": [
+						{
+							"name": "isinStock",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "clientSecret",
+											"value": "VxN9IWjMVyzgXQFt0cr3hw28yyypj6Bc",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"value": "spring-client-crendentials-id",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "http://localhost:8181/realms/spring-microservices1-security-realm/protocol/openid-connect/token",
+											"type": "string"
+										},
+										{
+											"key": "tokenName",
+											"value": "keycloak client token",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9000/api/inventory?skuCode=iphone_15&quantity=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"inventory"
+									],
+									"query": [
+										{
+											"key": "skuCode",
+											"value": "iphone_15"
+										},
+										{
+											"key": "quantity",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "orderService",
+					"item": [
+						{
+							"name": "http://localhost:9000/api/order",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "clientSecret",
+											"value": "VxN9IWjMVyzgXQFt0cr3hw28yyypj6Bc",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"value": "spring-client-crendentials-id",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "http://localhost:8181/realms/spring-microservices1-security-realm/protocol/openid-connect/token",
+											"type": "string"
+										},
+										{
+											"key": "tokenName",
+											"value": "keycloak client token",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"skuCode\": \"IPHONE233\",\r\n    \"price\": 16000,\r\n    \"quantity\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9000/api/order",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"api",
+										"order"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "health",
+					"item": [
+						{
+							"name": "actuatorHealth",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "clientSecret",
+											"value": "VxN9IWjMVyzgXQFt0cr3hw28yyypj6Bc",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"value": "spring-client-crendentials-id",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "http://localhost:8181/realms/spring-microservices1-security-realm/protocol/openid-connect/token",
+											"type": "string"
+										},
+										{
+											"key": "tokenName",
+											"value": "keycloak client token",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9000/actuator/health",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"actuator",
+										"health"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "services",
+			"item": [
+				{
+					"name": "productService",
+					"item": [
+						{
+							"name": "allProducts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/api/product",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"product"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\" : \"Samsung A20\",\r\n\t\"description\": \"Samsung A20 mobile 6gb ram\",\r\n\t\"price\": 15000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8083/api/product",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"api",
+										"product"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "orderService",
+					"item": []
+				},
+				{
+					"name": "inventoryService",
+					"item": []
+				}
+			]
+		}
+	]
+}
