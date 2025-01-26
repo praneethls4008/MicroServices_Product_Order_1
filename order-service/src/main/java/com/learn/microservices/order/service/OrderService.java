@@ -25,10 +25,10 @@ public class OrderService {
 
         log.info("Calling inventory service to check product is in stock!");
         InventoryClientResponse inventoryClientResponse = inventoryClient.isInStock(orderRequest.skuCode(), orderRequest.quantity());
-        if(inventoryClientResponse.isInStock() == false){
+        if(inventoryClientResponse==null || !inventoryClientResponse.isInStock()){
             log.info("product is out of stock!");
             return new OrderResponse(null, null, null, new BigDecimal(0), 0);
-        };
+        }
         log.info("product is in stock!");
 
         log.info("Received place order request for skuCode:{}", orderRequest.skuCode());
