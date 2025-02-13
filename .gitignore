@@ -107,3 +107,4 @@ docker/mysql/init.d/init.sql
 data/mongodb/diagnostic.data/metrics.interim
 .idea/vcs.xml
 data/mongodb/diagnostic.data/metrics.interim
+.idea/vcs.xml
